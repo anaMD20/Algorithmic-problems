@@ -1,0 +1,83 @@
+Problema1: FERIBOT
+
+Pentru a rezolva aceasta problema am ales tehnica cautarii binare.
+În prima linie a funcției, se determină cea mai mare greutate din vectorul G folosind funcția max_element(), iar în a doua linie se calculează suma tuturor greutăților din vector 
+folosind funcția accumulate(). Variabila ans este inițializată cu această sumă, deoarece capacitatea maximă a feribotului nu poate fi mai mică decât suma tuturor greutăților.
+În continuare, se aplică algoritmul de căutare binară folosind o buclă while. În fiecare iterație se calculează mijlocul intervalului și se verifică dacă capacitatea maximă a 
+feribotului este mai mică sau egală cu mijlocul intervalului. Dacă este adevărat, se actualizează valoarea lui ans cu mijlocul intervalului și se continuă căutarea pe subintervalul 
+din stânga. În caz contrar, căutarea continuă pe subintervalul din dreapta.
+În interiorul buclei while, se parcurge vectorul G și se calculează numărul de feriboturi necesare pentru a transporta toate mașinile, folosind variabilele sum și cnt. 
+Variabila sum reprezintă suma greutăților mașinilor dintr-un feribot, iar variabila cnt reprezintă numărul de feriboturi. Dacă suma depășește capacitatea maximă a feribotului, 
+se incrementează cnt și se resetează suma la greutatea mașinii curente.
+Complexitatea temporală a acestui cod este de O(N*log(S)), unde N este numărul de mașini și S este suma tuturor greutăților. Căutarea binară necesită log(S) iterații, 
+iar parcurgerea vectorului G necesită N iterații. Complexitatea spațială este O(N), datorită utilizării vectorului G.
+
+Complexitate temporala = O(N*log(S))
+Complexitate spatiala = O(N)
+
+
+Problema3:SUSHI
+
+Toate cele trei task-uri folosesc programare dinamică pentru a calcula suma maximă a notelor primite de fiecare meniu. Pentru a rezolva aceasta problema am folosit drept model problema rucsacului varianta discreta din laboratorul 3.
+În esență, problema se reduce la alegerea celor mai bune platouri de comandat în funcție de buget și de preferințele fiecărui prieten.
+Task-ul 1 presupune că se poate comanda o singură porție din fiecare platou și se dorește maximizarea sumei notelor primite de N prieteni. Complexitatea spațială este O(m * n * x), unde m este numărul de platouri disponibile, n este numărul de prieteni și x este bugetul maxim disponibil. Complexitatea temporală este O(m * n * x), deoarece există două bucle for încadrate care parcurg matricea dp.
+Task-ul 2 presupune că se poate comanda cel mult două porții din fiecare platou și se dorește maximizarea sumei notelor primite de N prieteni. Complexitatea spațială este O(m * n * x), unde m este numărul de platouri disponibile, n este numărul de prieteni și x este bugetul maxim disponibil. Complexitatea temporală este O(m * n * x^2), deoarece există trei bucle for încadrate care parcurg matricea dp.
+Task-ul 3 presupune că se poate comanda cel mult două porții din fiecare platou și cel mult n platouri în total și se dorește maximizarea sumei notelor primite de fiecare dintre cei N prieteni. Complexitatea spațială este O(m * n * x * n), unde m este numărul de platouri disponibile, n este numărul de prieteni și x este bugetul maxim disponibil. Complexitatea temporală este O(m * n * x * n * k), deoarece există patru bucle for încadrate care parcurg matricea dp.
+
+Complexitate temporală : O(n∗m*x)
+Complexitate spațială : O(n∗m*x)
+
+Problema4: SEMNALE
+
+La aceasta problema am facut doar task-ul 1 si am ales o rezolvare matematica care utilizeaza combinari. Am facut funcția factorial care calculează factorialul lui n .De funcția inverse am nevoie deoarece calculează inversul modular al lui x față de mod , de care avem nevoie in functia combinari, pentru a respecta regulile de lucru cu clase de resturi. Funcția combinari calculează combinația de n și k folosind funcțiile factorial și inverse. Funcția type1 apelează funcția combinari cu argumentele x+1 și y , deoarece avem x+1 spatii posibile in care pot fi asezati cei y biti de 1.
+În ceea ce privește complexitatea temporală, funcția factorial are o complexitate de timp O(n), deoarece trebuie să parcurgă toate valorile între 2 și n. Funcția inverse are o complexitate de timp O(log mod), deoarece bucla while se va executa cel mult de logaritm baza 2 din mod ori. Funcția combinari are o complexitate de timp O(k), deoarece trebuie să calculeze numarator și numitor utilizând funcțiile factorial și inverse. Prin urmare, complexitatea temporală totală a funcției type1 este O(n). Complexitatea spațială este constantă, O(1).
+
+Complexitate temporala: O(n)
+Complexitate spatiala: O(1)
+
+Problema4: MAGAZIN
+
+Functia DFS primește graful reprezentat sub forma unei liste de adiacență gf, o hartă results care stochează rezultatele parcurgerii pentru fiecare
+nod și un nod de start node. Parcurgerea DFS se realizează prin utilizarea unei stive stack. Se inițializează o stivă cu nodul de start, iar apoi
+se continuă extragerea nodurilor din stivă și expandarea lor în funcție de regulile DFS.
+În interiorul buclei while, se extrage nodul curent din vârful stivei și se verifică dacă a fost vizitat anterior. Dacă nu a fost vizitat,
+se marchează ca vizitat și se adaugă vecinii nevizitați în stivă pentru a fi explorați ulterior. De asemenea, se adaugă nodul curent în vectorul
+result ca rezultat al parcurgerii DFS.
+
+În funcția main, se deschid fișierele de intrare și ieșire și se citește numărul de noduri N și numărul de întrebări Q din fișierul de intrare.
+Se inițializează un graf gf reprezentat ca o listă de adiacență și un container nodeOrders pentru a stoca rezultatele parcurgerii DFS pentru
+fiecare nod.
+
+Apoi, se citește fiecare pereche parent-child din fișierul de intrare și se actualizează lista de adiacență gf corespunzătoare. De asemenea, se
+actualizează un vector parents pentru a urmări pointerii către ultimul element adăugat în lista de adiacență pentru fiecare nod.
+
+În continuare, se efectuează parcurgeri DFS pentru fiecare nod din graf folosind funcția dfs. Rezultatele parcurgerii sunt stocate în map-ul
+nodeOrders, unde cheile reprezintă nodurile și valorile sunt vectori care conțin rezultatele parcurgerii DFS.
+
+Se citesc apoi întrebările D-E din fișierul de intrare și se determină rezultatul corespunzător prin consultarea rezultatelor parcurgerii DFS din
+map-ul nodeOrders. Rezultatele sunt stocate în vectorul results.
+
+La final, rezultatele sunt scrise în fișierul de ieșire și fișierele de intrare și ieșire sunt închise.
+
+Complexitati:
+
+Complexitățile timp și spațiu ale codului sunt următoarele:
+
+Construirea grafului:
+
+Timp: O(N), unde N este numărul de noduri. Se citește în mod direct din fișierul de intrare și se actualizează lista de adiacență gf.
+Spațiu: O(N), deoarece se stochează graful sub forma listei de adiacență gf.
+Parcurgerea DFS și construirea rezultatelor:
+
+Timp: O(N + E), unde N este numărul de noduri și E este numărul de muchii din graf. Se efectuează o parcurgere DFS pentru fiecare nod,
+iar în total se vizitează fiecare nod și muchie o singură dată.
+Spațiu: O(N), deoarece se stochează vectorul visited de dimensiune N și vectorii result și stack de dimensiune maximă N.
+Determinarea rezultatelor pentru întrebări:
+
+Timp: O(Q), unde Q este numărul de întrebări. Pentru fiecare întrebare se verifică direct rezultatul din map-ul nodeOrders, ceea ce se
+realizează într-un timp constant.
+Spațiu: O(Q), deoarece se stochează vectorul results care conține rezultatele pentru fiecare întrebare.
+Astfel, complexitatea totală a codului este:
+
+Timp: O(N + E + Q)
+Spațiu: O(N + Q)
